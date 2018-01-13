@@ -8,6 +8,10 @@
     <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
   
     <script>
+
+      /*Var declaration*/
+
+      //--------------------------------------------
       AFRAME.registerComponent('set-sky', {
         schema: {default: ''},
         init() {
@@ -23,7 +27,20 @@
           // MOUSE ENTER EVENT
           this.el.addEventListener('mouseenter', () => {
                 console.log("enter to enter");
+                var vid = document.getElementById("bgmusic"); 
+                vid.play(); 
           });
+
+
+          // MOUSE ENTER EVENT
+          this.el.addEventListener('mouseleave', () => {
+                console.log("leave object");
+                var vid = document.getElementById("bgmusic"); 
+                vid.pause(); 
+          });
+
+
+
 
         }
       });
@@ -70,13 +87,17 @@
   <body>
     <a-scene>
           
+  <a-assets>
+    <audio id="neigh" src="assets/audio/music.mp3"></audio>
+  </a-assets>
 
 <!--<a-sphere set-sky="hello" color="#F44336" radius="1" position="0 2 0"></a-sphere>-->
+<audio id="bgmusic" src="assets/audio/music.mp3"></audio>
 
 
 <a-sphere color="#F44336" radius="1" position="-4 2 0" set-sky="https://c3.staticflickr.com/2/1475/26239222850_cabde81c39_k.jpg"></a-sphere>
 <a-sphere color="#FFEB3B" radius="1" position="4 2 0" set-sky="https://c2.staticflickr.com/2/1688/25044226823_53c979f8a1_k.jpg"></a-sphere>
-
+  
 
   <a-camera position="0 2 4">
     <a-cursor color="#4CC3D9" fuse="true" timeout="10"></a-cursor>
