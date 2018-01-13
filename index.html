@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>Medieval Game DAVID BLANCHARD</title>
+    <meta name="description" content="Hello, WebVR! - A-Frame">
+    <script src="https://aframe.io/releases/0.6.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+  
+    <script>
+      AFRAME.registerComponent('set-sky', {
+        schema: {default: ''},
+        init() {
+
+          const sky = document.querySelector('a-sky');
+
+          this.el.addEventListener('click', () => {
+            console.log(this.data);
+            sky.setAttribute('src', this.data);
+          });
+
+
+          // MOUSE ENTER EVENT
+          this.el.addEventListener('mouseenter', () => {
+                console.log("enter to enter");
+          });
+
+        }
+      });
+
+
+
+      AFRAME.registerComponent('scale-on-interact', {
+        schema: {
+            to: {default: '2.5 2.5 2.5'}
+        }, 
+
+        init: function () {
+            var data = this.data;
+
+        }, 
+
+        update: function() {
+            var data = this.data;
+            console.log(data.color);
+
+            // MOUSE ENTER EVENT
+            this.el.addEventListener('mouseenter', function() {
+                console.log("enter");
+                this.setAttribute('to', data.to);
+            });
+
+            // CLICK EVENT
+            this.el.addEventListener('click', function() {
+                console.log("click");
+            });
+
+            // MOUSE LEAVE EVENT
+            this.el.addEventListener('mouseleave', function() {
+                console.log("leave");
+            });
+        }
+    });
+
+
+
+    </script>
+
+  </head>
+  <body>
+    <a-scene>
+          
+
+<!--<a-sphere set-sky="hello" color="#F44336" radius="1" position="0 2 0"></a-sphere>-->
+
+
+<a-sphere color="#F44336" radius="1" position="-4 2 0" set-sky="https://c3.staticflickr.com/2/1475/26239222850_cabde81c39_k.jpg"></a-sphere>
+<a-sphere color="#FFEB3B" radius="1" position="4 2 0" set-sky="https://c2.staticflickr.com/2/1688/25044226823_53c979f8a1_k.jpg"></a-sphere>
+
+
+  <a-camera position="0 2 4">
+    <a-cursor color="#4CC3D9" fuse="true" timeout="10"></a-cursor>
+  </a-camera>
+      
+      
+      
+      <!-- EL cielo -->
+      <a-sky src="assets/sky.jpg"></a-sky>
+      
+    </a-scene>
+      
+  </body>
+</html>
